@@ -19,6 +19,10 @@ body {
 }
 .site-nav { background: linear-gradient(110deg, #172b61, var(--blue-dark)); box-shadow: 0 10px 28px rgba(27, 48, 91, .18); }
 .navbar-brand { letter-spacing: .02em; }
+.institute-brand { display: inline-flex; align-items: center; gap: .75rem; color: #fff !important; line-height: 1.05; }
+.institute-brand strong { display: block; font-size: .92rem; letter-spacing: .03em; }
+.institute-brand small { display: block; margin-top: .25rem; color: rgba(255, 255, 255, .7); font-size: .68rem; font-weight: 500; letter-spacing: .05em; }
+.institute-emblem, .institute-signature-mark { display: grid; flex: 0 0 auto; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255, 255, 255, .3); border-radius: 50%; color: #172b61; background: #f7bd74; font-size: .75rem; font-weight: 900; }
 .page-shell { padding-top: 2rem; padding-bottom: 4rem; }
 .page-shell:has(.auth-page) { max-width: none; padding: 0; }
 .card { border: 1px solid rgba(255, 255, 255, .75); border-radius: 18px; background: var(--panel); box-shadow: 0 18px 45px rgba(36, 56, 92, .10); backdrop-filter: blur(10px); transition: transform .2s ease, box-shadow .2s ease; }
@@ -58,9 +62,9 @@ h1, h2, h3, h4, h5 { letter-spacing: -.02em; }
     content: "";
     background: linear-gradient(90deg, rgba(11, 28, 66, .9), rgba(21, 47, 103, .5) 54%, rgba(11, 28, 66, .8));
 }
-.student-auth-page { background-image: url("https://loremflickr.com/1800/1200/india,students,college?lock=41"); }
-.admin-auth-page { background-image: url("https://loremflickr.com/1800/1200/india,technology,office?lock=42"); }
-.register-auth-page { background-image: url("https://loremflickr.com/1800/1200/india,engineering,students?lock=43"); }
+.student-auth-page { background-image: url("../images/hero-students.jpg"); }
+.admin-auth-page { background-image: url("../images/hero-career.jpg"); }
+.register-auth-page { background-image: url("../images/hero-teamwork.jpg"); }
 .auth-page > * { position: relative; z-index: 1; }
 .auth-page .login-visual { background: linear-gradient(180deg, rgba(19, 43, 96, .18), rgba(14, 28, 67, .84)), transparent; }
 .auth-page .login-panel { margin: 1.75rem; border-radius: 20px; background: rgba(255, 255, 255, .95); box-shadow: 0 18px 45px rgba(10, 24, 58, .25); }
@@ -101,13 +105,17 @@ h1, h2, h3, h4, h5 { letter-spacing: -.02em; }
 .home-hero { position: relative; min-height: min(680px, calc(100vh - 150px)); overflow: hidden; border-radius: 24px; color: #fff; background: #172b61; box-shadow: 0 24px 70px rgba(30, 49, 88, .16); }
 .home-carousel, .home-carousel .carousel-inner, .home-carousel .carousel-item { height: 100%; min-height: min(680px, calc(100vh - 150px)); }
 .home-slide-image { width: 100%; height: 100%; min-height: min(680px, calc(100vh - 150px)); object-fit: cover; filter: saturate(.9); }
-.home-carousel::after { position: absolute; inset: 0; z-index: 1; pointer-events: none; content: ""; background: linear-gradient(90deg, rgba(16, 35, 82, .94) 0%, rgba(24, 51, 104, .72) 48%, rgba(24, 51, 104, .1) 100%); }
+.home-carousel::after { position: absolute; inset: 0; z-index: 1; pointer-events: none; content: ""; background: linear-gradient(90deg, rgba(8, 27, 67, .9) 0%, rgba(13, 45, 96, .62) 48%, rgba(13, 45, 96, .2) 100%); }
 .home-hero-copy { position: absolute; inset: 0; z-index: 2; max-width: 690px; padding: clamp(2.5rem, 8vw, 7rem); }
 .home-carousel .carousel-indicators { z-index: 3; right: auto; bottom: 1.6rem; left: clamp(2.5rem, 8vw, 7rem); justify-content: flex-start; margin: 0; }
 .home-carousel .carousel-indicators button { width: 28px; height: 3px; margin: 0 5px 0 0; border: 0; border-radius: 4px; }
 .home-carousel .carousel-control-prev, .home-carousel .carousel-control-next { z-index: 3; width: 8%; }
 .home-hero h1 { max-width: 650px; margin: 1rem 0 1.3rem; color: #fff; font-size: clamp(2.7rem, 6vw, 5.8rem); line-height: .98; }
 .home-hero p { max-width: 520px; color: rgba(255, 255, 255, .82); font-size: 1.12rem; line-height: 1.7; }
+.institute-signature { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.5rem; padding: 1.5rem 2rem; border: 1px solid var(--line); border-left: 5px solid #f7bd74; border-radius: 14px; background: rgba(255, 255, 255, .76); box-shadow: 0 12px 30px rgba(36, 56, 92, .06); }
+.institute-signature-mark { width: 52px; height: 52px; color: #fff; border: 0; background: #23479d; }
+.institute-signature h2 { margin: .35rem 0; font-size: clamp(1.25rem, 2.5vw, 2rem); }
+.institute-signature p { margin: 0; color: var(--muted); }
 .home-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
 .home-actions .btn-light { color: var(--blue-dark); }
 .home-proof { display: flex; flex-wrap: wrap; gap: 1.1rem; margin-top: 3.5rem; color: rgba(255, 255, 255, .72); font-size: .78rem; letter-spacing: .03em; }
@@ -143,4 +151,7 @@ h1, h2, h3, h4, h5 { letter-spacing: -.02em; }
     .feature-grid, .report-metrics, .report-lower-grid { grid-template-columns: 1fr; }
     .section-heading, .reports-header, .home-admin-strip { align-items: flex-start; flex-direction: column; }
     .home-admin-strip { padding: 2rem; }
+    .institute-brand strong { font-size: .76rem; }
+    .institute-brand small { font-size: .58rem; }
+    .institute-signature { align-items: flex-start; padding: 1.25rem; }
 }

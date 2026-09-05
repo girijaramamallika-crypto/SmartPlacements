@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="reports-header"><div><span class="eyebrow text-primary">PLACEMENT INTELLIGENCE</span><h1>Reports & outcomes</h1><p>Understand the health of your placement season at a glance.</p></div><a href="{{ url_for('admin_login') }}" class="btn btn-primary">Admin console <span aria-hidden="true">&#8594;</span></a></section>
+
+<section class="report-metrics">
+    <article class="metric-card metric-primary"><span class="metric-label">Total students</span><strong>{{ total_students }}</strong><span class="metric-note">Registered profiles</span></article>
+    <article class="metric-card"><span class="metric-label">Companies</span><strong>{{ total_companies }}</strong><span class="metric-note">Hiring partners</span></article>
+    <article class="metric-card"><span class="metric-label">Placement drives</span><strong>{{ total_drives }}</strong><span class="metric-note">Active opportunities</span></article>
+    <article class="metric-card"><span class="metric-label">Applications</span><strong>{{ total_applications }}</strong><span class="metric-note">Submissions tracked</span></article>
+</section>
+
+<section class="report-lower-grid">
+    <div class="outcome-panel">
+        <div class="panel-heading"><div><span class="eyebrow text-primary">APPLICATION OUTCOMES</span><h2>Where things stand</h2></div><span class="panel-badge">Live totals</span></div>
+        <div class="outcome-row"><div class="outcome-name"><span class="outcome-dot dot-selected"></span>Selected students <strong>{{ selected_students }}</strong></div><div class="outcome-track"><span class="outcome-fill fill-selected" style="width: {{ (selected_students / total_applications * 100) if total_applications else 0 }}%"></span></div></div>
+        <div class="outcome-row"><div class="outcome-name"><span class="outcome-dot dot-rejected"></span>Rejected applications <strong>{{ rejected_students }}</strong></div><div class="outcome-track"><span class="outcome-fill fill-rejected" style="width: {{ (rejected_students / total_applications * 100) if total_applications else 0 }}%"></span></div></div>
+        <div class="outcome-row"><div class="outcome-name"><span class="outcome-dot dot-progress"></span>In progress <strong>{{ total_applications - selected_students - rejected_students }}</strong></div><div class="outcome-track"><span class="outcome-fill fill-progress" style="width: {{ ((total_applications - selected_students - rejected_students) / total_applications * 100) if total_applications else 0 }}%"></span></div></div>
+    </div>
+    <aside class="report-quick-panel"><span class="eyebrow">NEXT ACTION</span><h2>Keep the season moving.</h2><p>Review your student pool, refine drive details, and make sure every application has a clear status.</p><a href="{{ url_for('view_applications') }}" class="btn btn-dark">Review applications <span aria-hidden="true">&#8594;</span></a></aside>
+</section>
+
+{% endblock %}

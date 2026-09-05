@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center"><div class="col-lg-7"><div class="card p-4 p-md-5">
+
+    <h2 class="text-center mb-4">
+        Edit Profile
+    </h2>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text"
+                   name="full_name"
+                   class="form-control"
+                   pattern="^[A-Za-z][A-Za-z .'\-]{2,99}$"
+                   minlength="3"
+                   maxlength="100"
+                   value="{{ student.full_name }}"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email"
+                   name="email"
+                   class="form-control"
+                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$"
+                   value="{{ student.email }}"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text"
+                   name="phone"
+                   class="form-control"
+                   type="tel"
+                   pattern="^[0-9]{10}$"
+                   inputmode="numeric"
+                   maxlength="10"
+                   value="{{ student.phone }}"
+                   required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CGPA</label>
+            <input type="number"
+                   step="0.01"
+                   min="0"
+                   max="10"
+                   name="cgpa"
+                   class="form-control"
+                   value="{{ student.cgpa }}">
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Skills</label>
+            <textarea
+                name="skills"
+                class="form-control"
+                rows="4"
+                pattern="^[^0-9]{0,500}$"
+                maxlength="500">{{ student.skills }}</textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Save Changes
+        </button>
+
+        <a href="{{ url_for('home') }}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div></div></div>
+
+{% endblock %}

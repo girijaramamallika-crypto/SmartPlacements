@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="home-hero">
+    <div id="homeHeroCarousel" class="carousel slide carousel-fade home-carousel" data-bs-interval="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Graduation day"></button>
+            <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="1" aria-label="Students collaborating"></button>
+            <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="2" aria-label="Career opportunity"></button>
+            <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="3" aria-label="Indian campus"></button>
+            <button type="button" data-bs-target="#homeHeroCarousel" data-bs-slide-to="4" aria-label="India technology"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="home-slide-image" src="{{ url_for('static', filename='images/graduation.jpg') }}" onerror="this.onerror=null;this.src='https://loremflickr.com/1800/900/india,graduation?lock=21';" alt="B.Tech students celebrating their graduation in India">
+            </div>
+            <div class="carousel-item">
+                <img class="home-slide-image" src="https://loremflickr.com/1800/900/india,students,college?lock=22" alt="Engineering students collaborating on an Indian campus">
+            </div>
+            <div class="carousel-item">
+                <img class="home-slide-image" src="https://loremflickr.com/1800/900/india,technology,students?lock=23" alt="Indian technology students working together on a project">
+            </div>
+            <div class="carousel-item">
+                <img class="home-slide-image" src="https://loremflickr.com/1800/900/india,university,campus?lock=24" alt="A colorful Indian university campus">
+            </div>
+            <div class="carousel-item">
+                <img class="home-slide-image" src="https://loremflickr.com/1800/900/india,engineering,career?lock=25" alt="Indian engineering students preparing for careers">
+            </div>
+        </div>
+        <div class="home-hero-copy">
+            <span class="eyebrow">SMART PLACEMENT PORTAL</span>
+            <h1>Turn campus ambition into a clear next step.</h1>
+            <p>One calm, connected place for students to discover opportunities and for teams to run placement season with confidence.</p>
+            <div class="home-actions">
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Create student profile</a>
+                <a href="{{ url_for('login') }}" class="btn btn-light btn-lg">Student sign in</a>
+            </div>
+            <div class="home-proof"><span>01</span> Discover drives <span>02</span> Apply with confidence <span>03</span> Track every outcome</div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#homeHeroCarousel" data-bs-slide="prev" aria-label="Previous image"><span class="carousel-control-prev-icon"></span></button>
+        <button class="carousel-control-next" type="button" data-bs-target="#homeHeroCarousel" data-bs-slide="next" aria-label="Next image"><span class="carousel-control-next-icon"></span></button>
+    </div>
+</section>
+
+<section class="home-section">
+    <div class="section-heading">
+        <div><span class="eyebrow text-primary">BUILT FOR MOMENTUM</span><h2>Everything placement season needs.</h2></div>
+        <a href="{{ url_for('reports') }}" class="text-link">View placement reports <span aria-hidden="true">&#8594;</span></a>
+    </div>
+    <div class="feature-grid">
+        <article class="feature-card feature-blue"><div class="feature-icon">01</div><h3>Student readiness</h3><p>Keep your profile, skills, and resume ready for the right opportunity.</p><a href="{{ url_for('register') }}">Build your profile <span aria-hidden="true">&#8594;</span></a></article>
+        <article class="feature-card feature-mint"><div class="feature-icon">02</div><h3>Opportunity discovery</h3><p>Explore companies and placement drives without losing the details that matter.</p><a href="{{ url_for('login') }}">Explore as a student <span aria-hidden="true">&#8594;</span></a></article>
+        <article class="feature-card feature-coral"><div class="feature-icon">03</div><h3>Clear outcomes</h3><p>Follow applications from first submission through the final placement result.</p><a href="{{ url_for('reports') }}">See the bigger picture <span aria-hidden="true">&#8594;</span></a></article>
+    </div>
+</section>
+
+<section class="home-admin-strip"><div><span class="eyebrow">FOR PLACEMENT TEAMS</span><h2>Make every decision with the full picture.</h2><p>Manage the people, companies, drives, and outcomes behind a successful placement season.</p></div><a href="{{ url_for('admin_login') }}" class="btn btn-dark">Enter admin console <span aria-hidden="true">&#8594;</span></a></section>
+
+{% endblock %}

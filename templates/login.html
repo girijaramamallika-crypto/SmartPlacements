@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="login-layout auth-page student-auth-page" aria-labelledby="student-login-title">
+    <div class="login-visual">
+        <div class="login-visual-content">
+            <span class="eyebrow">STUDENT PORTAL</span>
+            <h1>Step into your next opportunity.</h1>
+            <p>Find placement drives, track applications, and keep your career journey moving forward.</p>
+        </div>
+    </div>
+
+    <div class="login-panel">
+        <div class="login-panel-inner">
+            <div class="login-mark">SP</div>
+            <p class="eyebrow text-primary mb-2">WELCOME BACK</p>
+            <h2 id="student-login-title">Student sign in</h2>
+            <p class="text-muted mb-4">Use your registered email to continue.</p>
+
+            <form method="POST" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="student-email">Email address</label>
+                    <input id="student-email" class="form-control" type="email" name="email"
+                           pattern="^[^\s@]+@[^\s@]+\.[^\s@]{2,}$" autocomplete="email" required>
+                    <div class="invalid-feedback">Enter a valid email address.</div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" for="student-password">Password</label>
+                    <input id="student-password" class="form-control" type="password" name="password"
+                           minlength="5" autocomplete="current-password" required>
+                    <div class="invalid-feedback">Password must be at least 5 characters.</div>
+                </div>
+
+                <button class="btn btn-primary w-100 py-3" type="submit">Sign in to portal</button>
+            </form>
+
+            <p class="login-footer">New to the portal? <a href="{{ url_for('register') }}">Create a student profile</a></p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

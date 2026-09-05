@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">🏢 All Companies</h2>
+
+    <!-- Search -->
+    <form method="GET" class="mb-4">
+        <div class="input-group">
+            <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="Search company, job role or location..."
+                value="{{ search or '' }}"
+            >
+
+            <button type="submit" class="btn btn-primary">
+                🔍 Search
+            </button>
+
+            <a href="{{ url_for('view_companies') }}"
+               class="btn btn-secondary">
+                Clear
+            </a>
+        </div>
+    </form>
+
+    <table class="table table-bordered table-hover shadow">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Company Name</th>
+                <th>Job Role</th>
+                <th>Package</th>
+                <th>CGPA</th>
+                <th>Location</th>
+                <th>Drive Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for company in companies %}
+
+            <tr>
+                <td>{{ company.company_id }}</td>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.job_role }}</td>
+                <td>{{ company.package }}</td>
+                <td>{{ company.eligibility_cgpa }}</td>
+                <td>{{ company.location }}</td>
+                <td>{{ company.drive_date }}</td>
+
+                <td>
+                    <a href="/edit-company/{{ company.company_id }}"
+                       class="btn btn-warning btn-sm">
+                        Edit
+                    </a>
+
+                    <a href="/delete-company/{{ company.company_id }}"
+                       class="btn btn-danger btn-sm"
+                       onclick="return confirm('Are you sure you want to delete this company?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

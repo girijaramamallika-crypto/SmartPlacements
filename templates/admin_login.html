@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="login-layout auth-page admin-auth-page" aria-labelledby="admin-login-title">
+    <div class="login-visual admin-visual">
+        <div class="login-visual-content">
+            <span class="eyebrow">ADMIN CONSOLE</span>
+            <h1>Keep every placement moving forward.</h1>
+            <p>Manage students, companies, drives, applications, and placement reports from one focused workspace.</p>
+        </div>
+    </div>
+
+    <div class="login-panel">
+        <div class="login-panel-inner">
+            <div class="login-mark admin-mark">AD</div>
+            <p class="eyebrow text-primary mb-2">SECURE ACCESS</p>
+            <h2 id="admin-login-title">Admin sign in</h2>
+            <p class="text-muted mb-4">Enter your administrator credentials to continue.</p>
+
+            <form method="POST" novalidate>
+                <div class="mb-3">
+                    <label class="form-label" for="admin-username">Username</label>
+                    <input id="admin-username" type="text" class="form-control" name="username"
+                           pattern="^[A-Za-z0-9_.\-]{3,50}$" maxlength="50" autocomplete="username" required>
+                    <div class="invalid-feedback">Use 3-50 letters, numbers, dots, underscores, or hyphens.</div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" for="admin-password">Password</label>
+                    <input id="admin-password" type="password" class="form-control" name="password"
+                           minlength="5" autocomplete="current-password" required>
+                    <div class="invalid-feedback">Password must be at least 5 characters.</div>
+                </div>
+
+                <button class="btn btn-primary w-100 py-3" type="submit">Enter admin console</button>
+            </form>
+
+            <p class="login-footer">Student account? <a href="{{ url_for('login') }}">Go to student login</a></p>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

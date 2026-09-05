@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="text-center mb-4">Edit Placement Drive</h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Company</label>
+
+                <select class="form-control" name="company_id">
+
+                    {% for company in companies %}
+
+                    <option value="{{ company.company_id }}"
+                        {% if company.company_id == drive.company_id %}selected{% endif %}>
+                        {{ company.company_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label>Drive Title</label>
+                <input type="text"
+                       class="form-control"
+                       name="drive_title"
+                       pattern="^[A-Za-z0-9][A-Za-z0-9 &/().,'\-]{1,99}$"
+                       maxlength="100"
+                       value="{{ drive.drive_title }}">
+            </div>
+
+            <div class="mb-3">
+                <label>Drive Date</label>
+                <input type="date"
+                       class="form-control"
+                       name="drive_date"
+                       value="{{ drive.drive_date }}">
+            </div>
+
+            <div class="mb-3">
+                <label>Last Date to Apply</label>
+                <input type="date"
+                       class="form-control"
+                       name="last_date_to_apply"
+                       value="{{ drive.last_date_to_apply }}">
+            </div>
+
+            <div class="mb-3">
+                <label>Venue</label>
+                <input type="text"
+                       class="form-control"
+                       name="venue"
+                       pattern="^[A-Za-z0-9][A-Za-z0-9 ,.'/\-]{1,99}$"
+                       maxlength="100"
+                       value="{{ drive.venue }}">
+            </div>
+
+            <div class="mb-3">
+                <label>Description</label>
+                <textarea class="form-control"
+                          name="description">{{ drive.description }}</textarea>
+            </div>
+
+            <button class="btn btn-primary w-100">
+                Update Placement Drive
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

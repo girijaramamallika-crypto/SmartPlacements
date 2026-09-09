@@ -1,7 +1,9 @@
+from functools import wraps
 from flask import Flask, render_template, request, redirect, url_for, session
 import os
 from datetime import date
 from models.models import db, Student, Admin, Company, PlacementDrive, Application
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "placement_secret_key")
@@ -11,6 +13,16 @@ app.config["UPLOAD_FOLDER"] = "static/resumes"
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 db.init_app(app)
+
+
+def admin_required(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+        if "admin_id" not in session:
+            return redirect(url_for("admin_login"))
+        return view(*args, **kwargs)
+
+    return wrapped_view
 
 
 def placement_summary():
@@ -163,6 +175,7 @@ def admin_dashboard():
 # ---------------- ADD COMPANY ----------------
 
 @app.route("/add-company", methods=["GET", "POST"])
+@admin_required
 def add_company():
     if request.method == "POST":
         company = Company(
@@ -204,6 +217,7 @@ def view_companies():
 # ---------------- EDIT COMPANY ----------------
 
 @app.route("/edit-company/<int:company_id>", methods=["GET", "POST"])
+@admin_required
 def edit_company(company_id):
     company = Company.query.get_or_404(company_id)
 
@@ -224,6 +238,7 @@ def edit_company(company_id):
 # ---------------- DATABASE ----------------
 
 @app.route("/delete-company/<int:company_id>")
+@admin_required
 def delete_company(company_id):
     company = Company.query.get_or_404(company_id)
     db.session.delete(company)
@@ -232,6 +247,7 @@ def delete_company(company_id):
 
 
 @app.route("/add-drive", methods=["GET", "POST"])
+@admin_required
 def add_drive():
     companies = Company.query.all()
 
@@ -270,6 +286,7 @@ def view_drives():
 
 
 @app.route("/edit-drive/<int:drive_id>", methods=["GET", "POST"])
+@admin_required
 def edit_drive(drive_id):
     drive = PlacementDrive.query.get_or_404(drive_id)
     companies = Company.query.all()
@@ -288,6 +305,7 @@ def edit_drive(drive_id):
 
 
 @app.route("/delete-drive/<int:drive_id>")
+@admin_required
 def delete_drive(drive_id):
     drive = PlacementDrive.query.get_or_404(drive_id)
     db.session.delete(drive)
@@ -306,6 +324,14 @@ def apply_drive(drive_id):
     if "student_id" not in session:
         return redirect(url_for("login"))
 
+    drive = PlacementDrive.query.get_or_404(drive_id)
+    existing_application = Application.query.filter_by(
+        student_id=session["student_id"],
+        drive_id=drive.drive_id,
+    ).first()
+    if existing_application:
+        return redirect(url_for("my_applications"))
+
     application = Application(
         student_id=session["student_id"],
         drive_id=drive_id,
@@ -322,6 +348,7 @@ def apply_drive(drive_id):
 # ---------------- PLACEMENT REPORTS ----------------
 
 @app.route("/reports")
+@admin_required
 def reports():
     total_students = Student.query.count()
     total_companies = Company.query.count()
@@ -342,6 +369,7 @@ def reports():
 
 
 @app.route("/view-students")
+@admin_required
 def view_students():
     search = request.args.get("search", "").strip()
 
@@ -361,12 +389,14 @@ def view_students():
 
 
 @app.route("/view-applications")
+@admin_required
 def view_applications():
     applications = Application.query.all()
     return render_template("view_applications.html", applications=applications)
 
 
 @app.route("/update-application/<int:application_id>", methods=["GET", "POST"])
+@admin_required
 def update_application(application_id):
     application = Application.query.get_or_404(application_id)
 
@@ -412,12 +442,19 @@ def edit_profile():
 
 @app.route("/upload-resume", methods=["GET", "POST"])
 def upload_resume():
+    if "student_id" not in session:
+        return redirect(url_for("login"))
+
     if request.method == "POST":
         file = request.files["resume"]
-        if file:
-            filepath = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
+        filename = secure_filename(file.filename) if file else ""
+        if filename:
+            filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             file.save(filepath)
-            return "Resume uploaded successfully!"
+            student = Student.query.get_or_404(session["student_id"])
+            student.resume = filename
+            db.session.commit()
+            return redirect(url_for("student_dashboard"))
 
     return render_template("upload_resume.html")
 

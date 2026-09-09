@@ -49,6 +49,15 @@ p {
     font-size: 1.15rem;
 }
 
+.navbar-brand small {
+    display: block;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.52rem;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    margin-top: 0.18rem;
+}
+
 .brand-mark {
     display: inline-flex;
     align-items: center;
@@ -233,7 +242,32 @@ p {
     justify-content: center;
     color: var(--navy-900);
     font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
 }
+
+.portal-page {
+    min-height: calc(100vh - 190px);
+}
+
+.portal-icon {
+    width: 52px;
+    height: 52px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.portal-icon--navy { background: rgba(12, 31, 77, 0.1); color: var(--navy-800); }
+.portal-icon--gold { background: rgba(245, 185, 66, 0.16); color: #9a6d09; }
+.portal-icon--mint { background: rgba(39, 179, 142, 0.14); color: #08785c; }
+.portal-icon--blue { background: rgba(45, 127, 249, 0.12); color: #1d4d9e; }
+.portal-icon--rose { background: rgba(229, 108, 133, 0.14); color: #ad3f59; }
+.portal-icon--slate { background: rgba(66, 84, 102, 0.12); color: var(--ink-700); }
 
 .featured-candidate h6 {
     margin-bottom: 0.25rem;

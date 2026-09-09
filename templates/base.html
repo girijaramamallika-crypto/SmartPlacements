@@ -26,15 +26,25 @@
         </button>
 
         <div class="collapse navbar-collapse" id="placementNavbar">
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('home') }}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('about_placements') }}">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('statistics') }}">Statistics</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('recruiters') }}">Recruiters</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('public_drives') }}">Drives</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('success_stories') }}">Success Stories</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('announcements') }}">Announcements</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('contact_placement_cell') }}">Contact</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Placements</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ url_for('about_placements') }}">About the cell</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('statistics') }}">Placement statistics</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('recruiters') }}">Recruiter partners</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('public_drives') }}">Upcoming drives</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('success_stories') }}">Success stories</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Updates</a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="{{ url_for('announcements') }}">Announcements</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('contact_placement_cell') }}">Contact placement cell</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a class="nav-link btn-nav" href="{{ url_for('login') }}">Student Login</a></li>
                 <li class="nav-item"><a class="nav-link btn-nav btn-nav--light" href="{{ url_for('admin_login') }}">Admin</a></li>
             </ul>

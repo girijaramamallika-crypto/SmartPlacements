@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="section-heading text-center">
+        <p class="eyebrow eyebrow-dark">Our recruiters</p>
+        <h2>Industry partners and hiring organizations</h2>
+    </div>
+
+    <div class="row g-4">
+        {% for company in companies %}
+        <div class="col-lg-4 col-md-6">
+            <div class="drive-card h-100">
+                <span class="drive-tag">{{ company.job_role }}</span>
+                <h4>{{ company.company_name }}</h4>
+                <ul>
+                    <li><strong>Role:</strong> {{ company.job_role }}</li>
+                    <li><strong>Package:</strong> {{ company.package }}</li>
+                    <li><strong>Location:</strong> {{ company.location }}</li>
+                    <li><strong>Eligibility:</strong> {{ company.eligibility_cgpa }} CGPA</li>
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="empty-state">No recruiters are currently listed. Please check back soon.</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

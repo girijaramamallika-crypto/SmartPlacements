@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="section-heading text-center">
+        <p class="eyebrow eyebrow-dark">Success stories</p>
+        <h2>Students turning opportunity into achievement</h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-4">
+            <div class="info-card p-4 h-100">
+                <div class="icon-wrap icon-navy">🏆</div>
+                <h3>Girija Rama Amallika</h3>
+                <p>Placed with a {{ summary.featured_package }} offer from {{ summary.featured_company }} after rigorous interview preparation and strong technical performance.</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-card p-4 h-100">
+                <div class="icon-wrap icon-gold">📈</div>
+                <h3>Growth mindset</h3>
+                <p>Students across branches are consistently improving their placement readiness through skill development, mock interviews, and mentorship.</p>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="info-card p-4 h-100">
+                <div class="icon-wrap icon-emerald">🤝</div>
+                <h3>Industry confidence</h3>
+                <p>Our placement process builds confidence, communication, and role-fit alignment that leads to stronger placement outcomes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

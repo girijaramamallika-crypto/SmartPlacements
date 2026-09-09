@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">👨‍💼 Admin Dashboard</h2>
+        <p class="text-muted">
+            Welcome, {{ admin.username }} | Manage your placement system
+        </p>
+    </div>
+
+    <!-- Statistics -->
+    <h5 class="fw-bold mb-3">📊 Placement Overview</h5>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card bg-primary text-white shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="display-6">👨‍🎓</div>
+                    <h2 class="fw-bold">{{ total_students }}</h2>
+                    <h6>Total Students</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="display-6">🏢</div>
+                    <h2 class="fw-bold">{{ total_companies }}</h2>
+                    <h6>Total Companies</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="display-6">📅</div>
+                    <h2 class="fw-bold">{{ total_drives }}</h2>
+                    <h6>Total Drives</h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-danger text-white shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="display-6">📝</div>
+                    <h2 class="fw-bold">{{ total_applications }}</h2>
+                    <h6>Total Applications</h6>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Management -->
+    <h5 class="fw-bold mt-5 mb-3">⚙️ Management</h5>
+
+    <div class="row g-4">
+
+        <!-- Companies -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-5 mb-3">🏢</div>
+
+                    <h5 class="fw-bold">Manage Companies</h5>
+
+                    <p class="text-muted">
+                        Add, edit and delete companies.
+                    </p>
+
+                    <a href="{{ url_for('view_companies') }}"
+                       class="btn btn-primary">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Students -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-5 mb-3">👨‍🎓</div>
+
+                    <h5 class="fw-bold">Manage Students</h5>
+
+                    <p class="text-muted">
+                        View registered students.
+                    </p>
+
+                    <a href="{{ url_for('view_students') }}"
+                       class="btn btn-primary">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Placement Drives -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-5 mb-3">📅</div>
+
+                    <h5 class="fw-bold">Placement Drives</h5>
+
+                    <p class="text-muted">
+                        Create and manage placement drives.
+                    </p>
+
+                    <a href="{{ url_for('view_drives') }}"
+                       class="btn btn-primary">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-5 mb-3">📝</div>
+
+                    <h5 class="fw-bold">View Applications</h5>
+
+                    <p class="text-muted">
+                        View and update student applications.
+                    </p>
+
+                    <a href="{{ url_for('view_applications') }}"
+                       class="btn btn-primary">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-5 mb-3">📊</div>
+
+                    <h5 class="fw-bold">Placement Reports</h5>
+
+                    <p class="text-muted">
+                        View placement statistics and reports.
+                    </p>
+
+                    <a href="{{ url_for('reports') }}"
+                       class="btn btn-success">
+                        View Reports
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="mt-4 text-center">
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">
+        🚪 Logout
+    </a>
+</div>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+                <p class="eyebrow">Career Development & Placement Cell</p>
+                <h1>Placement is a pathway, not a portal.</h1>
+                <p class="lead hero-copy">
+                    Empowering students with industry-ready opportunities, campus connections, and career growth through a professional university placement experience.
+                </p>
+                <div class="hero-actions">
+                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg hero-button">Student Registration</a>
+                    <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg hero-button">Student Login</a>
+                </div>
+                <div class="hero-trust mt-4">
+                    <span>Trusted by recruiters</span>
+                    <div class="mini-badges">
+                        <span>Infosys</span>
+                        <span>TCS</span>
+                        <span>Wipro</span>
+                        <span>Accenture</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero-panel">
+                    <div class="panel-top">
+                        <span class="live-pill">Live placement snapshot</span>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="metric-box accent-cyan">
+                            <small>Highest CTC</small>
+                            <strong>{{ summary.highest_package }}</strong>
+                        </div>
+                        <div class="metric-box accent-gold">
+                            <small>Average CTC</small>
+                            <strong>{{ summary.average_package }}</strong>
+                        </div>
+                        <div class="metric-box accent-rose">
+                            <small>Featured</small>
+                            <strong>{{ summary.featured_package }}</strong>
+                        </div>
+                    </div>
+                    <div class="featured-candidate">
+                        <div class="candidate-avatar">GR</div>
+                        <div>
+                            <h6>{{ summary.featured_student }}</h6>
+                            <p>Selected with {{ summary.featured_package }} from {{ summary.featured_company }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="outcomes-section">
+    <div class="container">
+        <div class="section-heading text-center">
+            <p class="eyebrow eyebrow-dark">Placement outcomes</p>
+            <h2>Results that build trust.</h2>
+        </div>
+
+        <div class="row g-4 mt-2">
+            <div class="col-md-3">
+                <div class="outcome-card outcome-navy">
+                    <span>Highest Package</span>
+                    <strong>{{ summary.highest_package }}</strong>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="outcome-card outcome-gold">
+                    <span>Average Package</span>
+                    <strong>{{ summary.average_package }}</strong>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="outcome-card outcome-emerald">
+                    <span>Students Placed</span>
+                    <strong>{{ summary.placed_students }}</strong>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="outcome-card outcome-rose">
+                    <span>Companies</span>
+                    <strong>{{ summary.companies_participated }}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="feature-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="info-card">
+                    <div class="icon-wrap icon-navy">🎯</div>
+                    <h3>Career-first ecosystem</h3>
+                    <p>From career guidance and resume support to technical preparation and recruiter engagement, we design each step for employability.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="info-card">
+                    <div class="icon-wrap icon-gold">📊</div>
+                    <h3>Data-driven placement trends</h3>
+                    <p>Track annual metrics, company participation, and placement success across core domains to optimize outcomes and decision-making.</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="info-card">
+                    <div class="icon-wrap icon-emerald">🤝</div>
+                    <h3>Stronger recruiter relations</h3>
+                    <p>Campus connect, guided hiring, and consistent placement quality help our students secure impactful opportunities with reputable organizations.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="upcoming-section">
+    <div class="container">
+        <div class="section-heading d-flex justify-content-between align-items-end flex-wrap gap-3">
+            <div>
+                <p class="eyebrow eyebrow-dark">Upcoming opportunities</p>
+                <h2>Placement drives and hiring events</h2>
+            </div>
+            <a href="{{ url_for('public_drives') }}" class="btn btn-outline-dark">View all drives</a>
+        </div>
+
+        <div class="row g-4 mt-2">
+            {% for drive in upcoming_drives %}
+            <div class="col-lg-4">
+                <div class="drive-card">
+                    <span class="drive-tag">{{ drive.company.company_name if drive.company else 'Campus drive' }}</span>
+                    <h4>{{ drive.drive_title }}</h4>
+                    <ul>
+                        <li><strong>Date:</strong> {{ drive.drive_date }}</li>
+                        <li><strong>Venue:</strong> {{ drive.venue }}</li>
+                        <li><strong>Apply by:</strong> {{ drive.last_date_to_apply }}</li>
+                    </ul>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-12">
+                <div class="empty-state">No placement drives published yet. Please check back soon.</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="partners-section">
+    <div class="container">
+        <div class="section-heading text-center">
+            <p class="eyebrow eyebrow-dark">Industry partners</p>
+            <h2>Building future-ready hiring pipelines</h2>
+        </div>
+        <div class="logo-row">
+            <span>Microsoft</span>
+            <span>Google</span>
+            <span>Amazon</span>
+            <span>TCS</span>
+            <span>Infosys</span>
+            <span>Wipro</span>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-box">
+            <div>
+                <p class="eyebrow">Start your placement journey</p>
+                <h3>Ready to take the next step toward your career?</h3>
+            </div>
+            <div class="cta-actions">
+                <a href="{{ url_for('register') }}" class="btn btn-light btn-lg">Register now</a>
+                <a href="{{ url_for('admin_login') }}" class="btn btn-outline-light btn-lg">Admin portal</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

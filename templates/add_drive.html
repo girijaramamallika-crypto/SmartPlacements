@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="text-center mb-4">Add Placement Drive</h2>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Company</label>
+
+                <select class="form-control" name="company_id" required>
+
+                    {% for company in companies %}
+
+                    <option value="{{ company.company_id }}">
+                        {{ company.company_name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Drive Title</label>
+                <input type="text"
+                       class="form-control"
+                       name="drive_title"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Drive Date</label>
+                <input type="date"
+                       class="form-control"
+                       name="drive_date"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Last Date to Apply</label>
+                <input type="date"
+                       class="form-control"
+                       name="last_date_to_apply"
+                       required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Venue</label>
+                <input type="text"
+                       class="form-control"
+                       name="venue">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control"
+                          name="description"></textarea>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-success w-100">
+                Save Placement Drive
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

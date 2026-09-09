@@ -1,0 +1,188 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-4">
+
+    <!-- Welcome -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">
+            Welcome, {{ student.full_name }} 👋
+        </h2>
+        <p class="text-muted">
+            Smart College Placement Management System
+        </p>
+    </div>
+
+    <!-- Application Status -->
+    {% if application %}
+
+        {% if application.status == "Selected" %}
+
+        <div class="alert alert-success text-center shadow-sm">
+            <h4>🎉 Congratulations!</h4>
+            <p class="mb-0">
+                You have been <strong>Selected</strong> for the placement drive.
+            </p>
+        </div>
+
+        {% elif application.status == "Rejected" %}
+
+        <div class="alert alert-danger text-center shadow-sm">
+            <h4>❌ Better Luck Next Time</h4>
+            <p class="mb-0">
+                Your application was not selected.
+            </p>
+        </div>
+
+        {% else %}
+
+        <div class="alert alert-info text-center shadow-sm">
+            <strong>Current Application Status:</strong>
+            {{ application.status }}
+        </div>
+
+        {% endif %}
+
+    {% endif %}
+
+    <!-- Dashboard Cards -->
+    <div class="row g-4 mt-2">
+
+        <!-- Profile -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-4 mb-3">👤</div>
+
+                    <h5 class="fw-bold">My Profile</h5>
+
+                    <p class="text-muted">
+                        View and update your profile.
+                    </p>
+
+                    <a href="{{ url_for('edit_profile') }}"
+                       class="btn btn-primary">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Resume -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-4 mb-3">📄</div>
+
+                    <h5 class="fw-bold">Resume</h5>
+
+                    <p class="text-muted">
+                        Upload your latest resume.
+                    </p>
+
+                    <a href="{{ url_for('upload_resume') }}"
+                       class="btn btn-success">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Companies -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-4 mb-3">🏢</div>
+
+                    <h5 class="fw-bold">Companies</h5>
+
+                    <p class="text-muted">
+                        View available companies.
+                    </p>
+
+                    <a href="{{ url_for('view_companies') }}"
+                       class="btn btn-info">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Placement Drives -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-4 mb-3">📅</div>
+
+                    <h5 class="fw-bold">Placement Drives</h5>
+
+                    <p class="text-muted">
+                        View upcoming placement drives.
+                    </p>
+
+                    <a href="{{ url_for('student_view_drives') }}"
+                       class="btn btn-success">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-4 mb-3">📝</div>
+
+                    <h5 class="fw-bold">Applications</h5>
+
+                    <p class="text-muted">
+                        Track your applications.
+                    </p>
+
+                    <a href="{{ url_for('my_applications') }}"
+                       class="btn btn-warning">
+                        Open
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Logout -->
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm text-center">
+                <div class="card-body p-4">
+
+                    <div class="display-4 mb-3">🚪</div>
+
+                    <h5 class="fw-bold">Logout</h5>
+
+                    <p class="text-muted">
+                        Logout safely from your account.
+                    </p>
+
+                    <a href="{{ url_for('logout') }}"
+                       class="btn btn-danger">
+                        Logout
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

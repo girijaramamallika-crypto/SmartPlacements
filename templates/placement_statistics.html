@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="section-heading text-center">
+        <p class="eyebrow eyebrow-dark">Placement statistics</p>
+        <h2>Performance overview</h2>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="outcome-card outcome-navy">
+                <span>Highest Package</span>
+                <strong>{{ summary.highest_package }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="outcome-card outcome-gold">
+                <span>Average Package</span>
+                <strong>{{ summary.average_package }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="outcome-card outcome-emerald">
+                <span>Placed Students</span>
+                <strong>{{ summary.placed_students }}</strong>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="outcome-card outcome-rose">
+                <span>Participating Companies</span>
+                <strong>{{ summary.companies_participated }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4 mt-1">
+        <div class="col-lg-6">
+            <div class="info-card p-4 h-100">
+                <h3>Key highlights</h3>
+                <ul class="drive-card-ul">
+                    <li><strong>Highest CTC:</strong> {{ summary.highest_package }}</li>
+                    <li><strong>Average CTC:</strong> {{ summary.average_package }}</li>
+                    <li><strong>Featured student:</strong> {{ summary.featured_student }}</li>
+                    <li><strong>Featured company:</strong> {{ summary.featured_company }}</li>
+                    <li><strong>Placement drives:</strong> {{ summary.drives_conducted }}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="info-card p-4 h-100">
+                <h3>Top performing branches</h3>
+                <div class="mini-badges dark-badges">
+                    {% for branch in summary.top_branches %}
+                    <span>{{ branch }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

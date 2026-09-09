@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4">
+
+        <h2 class="text-center mb-4">
+            Upload Resume
+        </h2>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <div class="mb-3">
+                <label class="form-label">
+                    Select Resume (PDF)
+                </label>
+
+                <input
+                    type="file"
+                    name="resume"
+                    class="form-control"
+                    accept=".pdf"
+                    required>
+            </div>
+
+            <button
+                type="submit"
+                class="btn btn-success">
+                Upload Resume
+            </button>
+
+            <a href="{{ url_for('student_dashboard') }}"
+               class="btn btn-secondary">
+                Back
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">📊 Placement Reports</h2>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>👨‍🎓</h2>
+                    <h4>Total Students</h4>
+                    <h2>{{ total_students }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>🏢</h2>
+                    <h4>Total Companies</h4>
+                    <h2>{{ total_companies }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>📅</h2>
+                    <h4>Total Drives</h4>
+                    <h2>{{ total_drives }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>📝</h2>
+                    <h4>Total Applications</h4>
+                    <h2>{{ total_applications }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>🎉</h2>
+                    <h4>Selected Students</h4>
+                    <h2>{{ selected_students }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <h2>❌</h2>
+                    <h4>Rejected Students</h4>
+                    <h2>{{ rejected_students }}</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

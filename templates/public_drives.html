@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container py-5">
+    <div class="section-heading text-center">
+        <p class="eyebrow eyebrow-dark">Active opportunities</p>
+        <h2>Placement drives and recruitment events</h2>
+    </div>
+
+    <div class="row g-4">
+        {% for drive in drives %}
+        <div class="col-lg-4 col-md-6">
+            <div class="drive-card h-100">
+                <span class="drive-tag">{{ drive.company.company_name if drive.company else 'Campus drive' }}</span>
+                <h4>{{ drive.drive_title }}</h4>
+                <ul>
+                    <li><strong>Date:</strong> {{ drive.drive_date }}</li>
+                    <li><strong>Last date:</strong> {{ drive.last_date_to_apply }}</li>
+                    <li><strong>Venue:</strong> {{ drive.venue }}</li>
+                    <li><strong>Details:</strong> {{ drive.description or 'Campus placement drive for eligible students.' }}</li>
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <div class="col-12">
+            <div class="empty-state">No placement drives are currently scheduled.</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

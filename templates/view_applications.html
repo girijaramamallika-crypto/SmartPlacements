@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Applications</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">Student Applications</h2>
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+            
+           <tr>
+              <th>Student</th>
+              <th>Company</th>
+              <th>Drive</th>
+              <th>Applied Date</th>
+              <th>Status</th>
+              <th>Action</th>
+           </tr>
+        </thead>
+
+        <tbody>
+
+        {% for application in applications %}
+
+        <tr>
+
+            <td>{{ application.student.full_name }}</td>
+
+            <td>{{ application.drive.company.company_name }}</td>
+
+            <td>{{ application.drive.drive_title }}</td>
+
+            <td>{{ application.application_date }}</td>
+
+            <td>{{ application.status }}</td>
+            <td>
+    <a href="{{ url_for('update_application', application_id=application.application_id) }}"
+       class="btn btn-warning btn-sm">
+        Update Status
+    </a>
+</td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+</html>

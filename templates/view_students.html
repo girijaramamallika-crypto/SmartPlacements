@@ -4,7 +4,21 @@
 
 <div class="container mt-5">
 
-    <h2 class="mb-4">👨‍🎓 All Students</h2>
+    <div class="portal-tabs" role="tablist" aria-label="Admin workspace">
+        <a class="portal-tab {% if request.endpoint == 'admin_dashboard' %}is-active{% endif %}" href="{{ url_for('admin_dashboard') }}">Overview</a>
+        <a class="portal-tab {% if request.endpoint in ['view_drives','add_drive','edit_drive'] %}is-active{% endif %}" href="{{ url_for('view_drives') }}">Drives</a>
+        <a class="portal-tab {% if request.endpoint in ['view_companies','add_company','edit_company'] %}is-active{% endif %}" href="{{ url_for('view_companies') }}">Companies</a>
+        <a class="portal-tab {% if request.endpoint == 'view_students' %}is-active{% endif %}" href="{{ url_for('view_students') }}">Students</a>
+        <a class="portal-tab {% if request.endpoint in ['view_applications','update_application'] %}is-active{% endif %}" href="{{ url_for('view_applications') }}">Applications</a>
+        <a class="portal-tab {% if request.endpoint == 'reports' %}is-active{% endif %}" href="{{ url_for('reports') }}">Reports</a>
+        <a class="portal-tab {% if request.endpoint == 'home' %}is-active{% endif %}" href="{{ url_for('home') }}">Front Page</a>
+        <a class="portal-tab" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">👨‍🎓 All Students</h2>
+        <a href="{{ url_for('add_student') }}" class="btn btn-success">Add Student</a>
+    </div>
 
     <!-- Search -->
     <form method="GET" class="mb-4">
@@ -42,6 +56,8 @@
                 <th>Branch</th>
                 <th>CGPA</th>
                 <th>Skills</th>
+                <th>Resume</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -58,12 +74,24 @@
                 <td>{{ student.branch }}</td>
                 <td>{{ student.cgpa }}</td>
                 <td>{{ student.skills }}</td>
+                <td class="text-nowrap">
+                    {% if student.resume %}
+                    <a href="{{ url_for('static', filename='resumes/' ~ student.resume) }}" target="_blank" class="btn btn-outline-primary btn-sm">View</a>
+                    {% else %}
+                    <span class="text-muted">Not uploaded</span>
+                    {% endif %}
+                    <a href="{{ url_for('admin_upload_resume', student_id=student.student_id) }}" class="btn btn-outline-success btn-sm">{{ 'Replace' if student.resume else 'Upload' }}</a>
+                </td>
+                <td class="text-nowrap">
+                    <a href="{{ url_for('edit_student', student_id=student.student_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ url_for('delete_student', student_id=student.student_id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this student and their applications?')">Delete</a>
+                </td>
             </tr>
 
             {% else %}
 
             <tr>
-                <td colspan="8" class="text-center">
+                <td colspan="10" class="text-center">
                     No students found.
                 </td>
             </tr>

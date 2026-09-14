@@ -7,28 +7,35 @@
     <div class="card shadow p-4">
 
         <h2 class="text-center mb-4">
-            Upload Resume
+            {{ 'Replace Resume' if student.resume else 'Upload Resume' }}
         </h2>
+
+        {% if student.resume %}
+        <div class="alert alert-info">
+            Current resume: <a href="{{ url_for('static', filename='resumes/' ~ student.resume) }}" target="_blank">View uploaded resume</a>. Uploading a new file will replace it.
+        </div>
+        {% endif %}
+        {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
 
         <form method="POST" enctype="multipart/form-data">
 
             <div class="mb-3">
                 <label class="form-label">
-                    Select Resume (PDF)
+                    Select Resume (PDF, DOC, or DOCX)
                 </label>
 
                 <input
                     type="file"
                     name="resume"
                     class="form-control"
-                    accept=".pdf"
+                    accept=".pdf,.doc,.docx"
                     required>
             </div>
 
             <button
                 type="submit"
                 class="btn btn-success">
-                Upload Resume
+                {{ 'Replace Resume' if student.resume else 'Upload Resume' }}
             </button>
 
             <a href="{{ url_for('student_dashboard') }}"

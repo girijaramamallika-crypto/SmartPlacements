@@ -4,7 +4,25 @@
 
 <div class="container mt-5">
 
-    <h2 class="mb-4">🏢 All Companies</h2>
+    {% if session.get('admin_id') %}
+    <div class="portal-tabs" role="tablist" aria-label="Admin workspace">
+        <a class="portal-tab {% if request.endpoint == 'admin_dashboard' %}is-active{% endif %}" href="{{ url_for('admin_dashboard') }}">Overview</a>
+        <a class="portal-tab {% if request.endpoint in ['view_drives','add_drive','edit_drive'] %}is-active{% endif %}" href="{{ url_for('view_drives') }}">Drives</a>
+        <a class="portal-tab {% if request.endpoint in ['view_companies','add_company','edit_company'] %}is-active{% endif %}" href="{{ url_for('view_companies') }}">Companies</a>
+        <a class="portal-tab {% if request.endpoint == 'view_students' %}is-active{% endif %}" href="{{ url_for('view_students') }}">Students</a>
+        <a class="portal-tab {% if request.endpoint in ['view_applications','update_application'] %}is-active{% endif %}" href="{{ url_for('view_applications') }}">Applications</a>
+        <a class="portal-tab {% if request.endpoint == 'reports' %}is-active{% endif %}" href="{{ url_for('reports') }}">Reports</a>
+        <a class="portal-tab {% if request.endpoint == 'home' %}is-active{% endif %}" href="{{ url_for('home') }}">Front Page</a>
+        <a class="portal-tab" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+    {% endif %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">🏢 All Companies</h2>
+        {% if session.get('admin_id') %}
+        <a href="{{ url_for('add_company') }}" class="btn btn-success">Add Company</a>
+        {% endif %}
+    </div>
 
     <!-- Search -->
     <form method="GET" class="mb-4">
@@ -57,6 +75,7 @@
                 <td>{{ company.drive_date }}</td>
 
                 <td>
+                    {% if session.get('admin_id') %}
                     <a href="/edit-company/{{ company.company_id }}"
                        class="btn btn-warning btn-sm">
                         Edit
@@ -67,6 +86,9 @@
                        onclick="return confirm('Are you sure you want to delete this company?')">
                         Delete
                     </a>
+                    {% else %}
+                    <span class="text-muted">View only</span>
+                    {% endif %}
                 </td>
             </tr>
 

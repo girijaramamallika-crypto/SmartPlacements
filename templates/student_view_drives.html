@@ -14,7 +14,7 @@
 <nav class="navbar navbar-dark bg-primary">
     <div class="container">
         <span class="navbar-brand">
-            🎓 Placement Portal
+            🎓 NRI University Placement Hub
         </span>
     </div>
 </nav>
@@ -35,7 +35,7 @@
                 <th>Drive Date</th>
                 <th>Last Date</th>
                 <th>Venue</th>
-                <th>Action</th>
+                <th>Access</th>
             </tr>
 
         </thead>
@@ -56,12 +56,7 @@
 
                 <td>{{ drive.venue }}</td>
 
-                <td>
-                    <a href="{{ url_for('apply_drive', drive_id=drive.drive_id) }}"
-                       class="btn btn-success btn-sm">
-                        Apply
-                    </a>
-                </td>
+                <td><span class="text-muted">View only</span></td>
 
             </tr>
 

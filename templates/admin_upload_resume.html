@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="portal-tabs" role="tablist" aria-label="Admin workspace">
+        <a class="portal-tab" href="{{ url_for('admin_dashboard') }}">Overview</a>
+        <a class="portal-tab" href="{{ url_for('view_drives') }}">Drives</a>
+        <a class="portal-tab" href="{{ url_for('view_companies') }}">Companies</a>
+        <a class="portal-tab is-active" href="{{ url_for('view_students') }}">Students</a>
+        <a class="portal-tab" href="{{ url_for('view_applications') }}">Applications</a>
+        <a class="portal-tab" href="{{ url_for('reports') }}">Reports</a>
+        <a class="portal-tab" href="{{ url_for('home') }}">Front Page</a>
+        <a class="portal-tab" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="card shadow p-4">
+        <h2 class="mb-3">{{ 'Replace' if student.resume else 'Upload' }} Resume</h2>
+        <p class="text-muted">Student: <strong>{{ student.full_name }}</strong></p>
+        {% if student.resume %}
+        <p>Current file: <a href="{{ url_for('static', filename='resumes/' ~ student.resume) }}" target="_blank">View current resume</a></p>
+        {% endif %}
+        {% if error %}<div class="alert alert-danger">{{ error }}</div>{% endif %}
+        <form method="POST" enctype="multipart/form-data">
+            <label class="form-label">Select resume (PDF, DOC, or DOCX)</label>
+            <input type="file" name="resume" class="form-control mb-4" accept=".pdf,.doc,.docx" required>
+            <button type="submit" class="btn btn-success">{{ 'Replace Resume' if student.resume else 'Upload Resume' }}</button>
+            <a href="{{ url_for('view_students') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

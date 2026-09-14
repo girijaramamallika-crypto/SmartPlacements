@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="portal-tabs" role="tablist" aria-label="Admin workspace">
+        <a class="portal-tab" href="{{ url_for('admin_dashboard') }}">Overview</a>
+        <a class="portal-tab" href="{{ url_for('view_drives') }}">Drives</a>
+        <a class="portal-tab" href="{{ url_for('view_companies') }}">Companies</a>
+        <a class="portal-tab is-active" href="{{ url_for('view_students') }}">Students</a>
+        <a class="portal-tab" href="{{ url_for('view_applications') }}">Applications</a>
+        <a class="portal-tab" href="{{ url_for('reports') }}">Reports</a>
+        <a class="portal-tab" href="{{ url_for('home') }}">Front Page</a>
+        <a class="portal-tab" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="card shadow p-4">
+        <h2 class="mb-4">{{ 'Edit Student' if student else 'Add Student' }}</h2>
+        <form method="POST">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">Full Name</label>
+                    <input class="form-control" name="full_name" value="{{ student.full_name if student else '' }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Roll Number</label>
+                    <input class="form-control" name="roll_number" value="{{ student.roll_number if student else '' }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" value="{{ student.email if student else '' }}" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Phone</label>
+                    <input class="form-control" name="phone" value="{{ student.phone if student else '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Branch</label>
+                    <input class="form-control" name="branch" value="{{ student.branch if student else '' }}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">CGPA</label>
+                    <input type="number" step="0.01" min="0" max="10" class="form-control" name="cgpa" value="{{ student.cgpa if student else '' }}">
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Skills</label>
+                    <textarea class="form-control" name="skills" rows="3">{{ student.skills if student else '' }}</textarea>
+                </div>
+                {% if not student %}
+                <div class="col-md-6">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                {% endif %}
+            </div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary">{{ 'Update Student' if student else 'Add Student' }}</button>
+                <a href="{{ url_for('view_students') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

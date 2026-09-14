@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% block title %}Student Dashboard | DR. RVR NRI Institute of Technology{% endblock %}
+{% block title %}Student Dashboard | NRI University Placement Hub{% endblock %}
 
 <div class="container portal-page py-4">
 
@@ -11,8 +11,18 @@
         <p class="eyebrow eyebrow-dark mb-2">Student portal</p>
         <h2 class="fw-bold">Welcome, {{ student.full_name }}</h2>
         <p class="text-muted">
-            Smart College Placement Management System
+            Your focused career workspace
         </p>
+    </div>
+
+    <div class="portal-tabs" role="tablist" aria-label="Student workspace">
+        <a class="portal-tab {% if request.endpoint == 'student_dashboard' %}is-active{% endif %}" href="{{ url_for('student_dashboard') }}">Overview</a>
+        <a class="portal-tab {% if request.endpoint == 'student_view_drives' %}is-active{% endif %}" href="{{ url_for('student_view_drives') }}">Open drives</a>
+        <a class="portal-tab {% if request.endpoint == 'my_applications' %}is-active{% endif %}" href="{{ url_for('my_applications') }}">My applications</a>
+        <a class="portal-tab {% if request.endpoint == 'edit_profile' %}is-active{% endif %}" href="{{ url_for('edit_profile') }}">Profile</a>
+        <a class="portal-tab {% if request.endpoint == 'upload_resume' %}is-active{% endif %}" href="{{ url_for('upload_resume') }}">Upload resume</a>
+        <a class="portal-tab {% if request.endpoint == 'home' %}is-active{% endif %}" href="{{ url_for('home') }}">Front Page</a>
+        <a class="portal-tab" href="{{ url_for('logout') }}">Logout</a>
     </div>
 
     <!-- Application Status -->
@@ -82,12 +92,15 @@
                     <h5 class="fw-bold">Resume</h5>
 
                     <p class="text-muted">
-                        Upload your latest resume.
+                        {% if student.resume %}Current resume uploaded. Replace it anytime.{% else %}Upload your latest resume.{% endif %}
                     </p>
 
+                    {% if student.resume %}
+                    <a href="{{ url_for('static', filename='resumes/' ~ student.resume) }}" target="_blank" class="btn btn-outline-primary">View</a>
+                    {% endif %}
                     <a href="{{ url_for('upload_resume') }}"
                        class="btn btn-success">
-                        Open
+                        {{ 'Replace' if student.resume else 'Upload' }}
                     </a>
 
                 </div>

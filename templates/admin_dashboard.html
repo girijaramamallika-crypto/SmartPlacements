@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% block title %}Admin Dashboard | DR. RVR NRI Institute of Technology{% endblock %}
+{% block title %}Admin Dashboard | NRI University Placement Hub{% endblock %}
 
 <div class="container portal-page py-4">
 
@@ -11,8 +11,19 @@
         <p class="eyebrow eyebrow-dark mb-2">Placement operations</p>
         <h2 class="fw-bold">Admin Dashboard</h2>
         <p class="text-muted">
-            Welcome, {{ admin.username }} | Manage your placement system
+            Welcome, {{ admin.username }} | Manage your career network
         </p>
+    </div>
+
+    <div class="portal-tabs" role="tablist" aria-label="Admin workspace">
+        <a class="portal-tab {% if request.endpoint == 'admin_dashboard' %}is-active{% endif %}" href="{{ url_for('admin_dashboard') }}">Overview</a>
+        <a class="portal-tab {% if request.endpoint in ['view_drives','add_drive','edit_drive'] %}is-active{% endif %}" href="{{ url_for('view_drives') }}">Drives</a>
+        <a class="portal-tab {% if request.endpoint in ['view_companies','add_company','edit_company'] %}is-active{% endif %}" href="{{ url_for('view_companies') }}">Companies</a>
+        <a class="portal-tab {% if request.endpoint in ['view_students'] %}is-active{% endif %}" href="{{ url_for('view_students') }}">Students</a>
+        <a class="portal-tab {% if request.endpoint in ['view_applications','update_application'] %}is-active{% endif %}" href="{{ url_for('view_applications') }}">Applications</a>
+        <a class="portal-tab {% if request.endpoint == 'reports' %}is-active{% endif %}" href="{{ url_for('reports') }}">Reports</a>
+        <a class="portal-tab {% if request.endpoint == 'home' %}is-active{% endif %}" href="{{ url_for('home') }}">Front Page</a>
+        <a class="portal-tab" href="{{ url_for('logout') }}">Logout</a>
     </div>
 
     <!-- Statistics -->
@@ -60,6 +71,16 @@
             </div>
         </div>
 
+        <div class="col-md-3">
+            <div class="card bg-info text-dark shadow-sm h-100">
+                <div class="card-body text-center p-4">
+                    <div class="display-6">🎉</div>
+                    <h2 class="fw-bold">{{ placed_students }}</h2>
+                    <h6>Placed Students</h6>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Management -->
@@ -84,6 +105,7 @@
                        class="btn btn-primary">
                         Open
                     </a>
+                    <a href="{{ url_for('add_company') }}" class="btn btn-outline-success">Add</a>
 
                 </div>
             </div>
@@ -106,6 +128,7 @@
                        class="btn btn-primary">
                         Open
                     </a>
+                    <a href="{{ url_for('add_student') }}" class="btn btn-outline-success">Add</a>
 
                 </div>
             </div>
@@ -128,6 +151,7 @@
                        class="btn btn-primary">
                         Open
                     </a>
+                    <a href="{{ url_for('add_drive') }}" class="btn btn-outline-success">Add</a>
 
                 </div>
             </div>
